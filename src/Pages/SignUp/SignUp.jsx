@@ -3,12 +3,14 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../../sharedComponents/Navbar/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
 
 
 
 const SignUp = () => {
 
-    const { createUser,googleSignin  } = useContext(AuthContext)
+    const { createUser, googleSignin } = useContext(AuthContext)
+    const axiosPublic = useAxiosPublic()
     // const navigate = useNavigate()
     // const location=useLocation()
 
@@ -38,6 +40,17 @@ const SignUp = () => {
         // create user with email and password
         createUser(email, password)
             .then(() => {
+                const userInfo = {
+                    email: email
+                }
+                console.log(userInfo);
+
+                // send user data in server
+                axiosPublic.post("/api/v1/users", userInfo)
+                    .then(res => {
+                        console.log(res.data);
+                    })
+
                 // navigate(location?.state?location.state:"/")
                 return alert('Your account has been created successfully!')
             })
@@ -46,16 +59,29 @@ const SignUp = () => {
             })
     }
 
-        // googleSignin
-        const handleGoogleSignin = () => {
-            googleSignin()
-                .then(() => {
-                    // navigate(location?.state?location.state:"/")
-                    return alert('Login Successful by Google')
-    
-                })
-                .catch()
-        }
+    // googleSignin
+    const handleGoogleSignin = () => {
+        googleSignin()
+            .then((res) => {
+                console.log(res);
+
+                const userInfo = {
+                    name: res.user?.displayName,
+                    email: res.user?.email
+                }
+
+                // send user data in serverside
+                axiosPublic.post("/api/v1/users", userInfo)
+                    .then(result => {
+                        console.log(result.data);
+                    })
+
+                // navigate(location?.state?location.state:"/")
+                return alert('Login Successful by Google')
+
+            })
+            .catch()
+    }
 
 
     return (

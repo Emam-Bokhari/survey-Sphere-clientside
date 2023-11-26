@@ -18,7 +18,7 @@ const SurveyDetails = () => {
     const axiosPublic = useAxiosPublic()
 
     const handleLike = async (_id) => {
-        console.log('like', _id);
+        // console.log('like', _id);
         const surveyLike = {
             surveyId: _id,
             count: 1,
@@ -78,6 +78,22 @@ const SurveyDetails = () => {
     }, [refetch]);
 
 
+    // report
+    const handleReport=(event)=>{
+        event.preventDefault()
+        const form = event.target
+        const report = form.report.value
+
+        const reportInfo={
+            email:user?.email,
+            name:user?.displayName,
+            reportId:_id,
+            report,
+            surveyTitle:surveyTitle
+        }
+        console.log(reportInfo);
+    }
+
 
 
     return (
@@ -131,6 +147,18 @@ const SurveyDetails = () => {
             <div className="grid grid-cols-1 gap-5" >
                 {comment.map((item, index) => <CommentData key={index} data={item} />)}
             </div>
+
+            {/* Report */}
+            <form onSubmit={handleReport} className="my-10" >
+                <h2 className=" text-xl md:text-2xl font-semibold text-red-500 my-2" >Report:</h2>
+<textarea name="report" className="border border-black outline-red-500 md:w-1/2 p-2 md:p-4 placeholder:text-red-500 placeholder:text-base" placeholder="Enter Your Report..."  ></textarea>
+
+{/* button */}
+<div>
+<input className="px-4 py-2 bg-red-500 font-bold text-white rounded text-base md:text-lg" type="submit" value="Report" />
+</div>
+
+            </form>
 
 
 

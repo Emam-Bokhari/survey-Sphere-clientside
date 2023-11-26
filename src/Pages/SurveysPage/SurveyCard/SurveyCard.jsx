@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 
 const SurveyCard = ({ data }) => {
-    console.log(data);
+    // console.log(data);
     const { surveyTitle, description,_id } = data || {};
 
     return (

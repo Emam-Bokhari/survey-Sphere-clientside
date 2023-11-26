@@ -1,6 +1,6 @@
 
 const CommentData = ({data}) => {
-    console.log(data);
+    // console.log(data);
     const {comment,name,photo}=data||{}
     return (
         <div>

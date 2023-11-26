@@ -11,7 +11,7 @@ import { MdReport } from "react-icons/md";
 
 const Sidebar = () => {
 
-    const isAdmin = false
+    const isAdmin = true
 
     return (
         <div className="my-10" >

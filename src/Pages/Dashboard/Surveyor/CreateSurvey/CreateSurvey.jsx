@@ -1,4 +1,4 @@
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { AuthContext } from './../../../../AuthProvider/AuthProvider';
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 
@@ -6,7 +6,7 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 const CreateSurvey = () => {
   const axiosPublic=useAxiosPublic()
   const {user}=useContext(AuthContext)
-  const [questionCount, setQuestionCount] = useState(5); // Initial number of questions
+  
 
   const handleCreateSurvey =async (event) => {
     event.preventDefault();
@@ -18,13 +18,15 @@ const CreateSurvey = () => {
       category: form.category.value,
       date: form.date.value,
       description: form.description.value,
+      question1:form.question1.value,
+      question2:form.question2.value,
+      question3:form.question3.value,
+      question4:form.question4.value,
+      question5:form.question5.value,
     };
 
     
-    for (let i = 1; i <= questionCount; i++) {
-      createSurvey[`question${i}`] = form[`question${i}`].value;
-    }
-
+    
 
     // console.log(createSurvey);
 
@@ -39,17 +41,7 @@ const CreateSurvey = () => {
 
 
 
-//   add question feild
-  const handleAddQuestion = () => {
-    setQuestionCount((prevCount) => prevCount + 1);
-  };
 
-
-//   delete question feild
-  const handleDeleteQuestion = (questionIndex) => {
-    setQuestionCount((prevCount) => prevCount - 1);
-    
-  };
 
 
   return (
@@ -94,7 +86,7 @@ const CreateSurvey = () => {
                 </select>
               </div>
               <div className="flex-1">
-                <input className="bg-white w-full p-2 rounded-sm outline-none" type="date" name="date" />
+                <input className="bg-white w-full p-2 rounded-sm outline-none" type="date" name="date" required />
               </div>
             </div>
 
@@ -107,25 +99,41 @@ const CreateSurvey = () => {
               ></textarea>
             </div>
 
-            {[...Array(questionCount)].map((_, index) => (
-              <div className="my-5 " key={index}>
-                <p className="text-[2a2a2a] font-bold">Question {index + 1}:</p>
-                <input
-                  className="w-full rounded-sm p-2 outline-none "
-                  name={`question${index + 1}`}
-                  placeholder={`Enter your question ${index + 1} ?`}
-                />
+            {/* question */}
+           <div className="space-y-2" >
+            
+           <div>
+              <p className="text-lg text-[#2a2a2a]" >Question 1:</p>
+              <input className="bg-white w-full p-2 rounded-sm outline-none"  type="text" name="question1" placeholder="Enter Your Question 1 ?"required />
+            </div>
 
-                {/* delete */}
-                <button className="text-red-500"  type="button" onClick={() => handleDeleteQuestion(index)}>
-                  Delete Question
-                </button>
-              </div>
-            ))}
+            <div>
+              <p className="text-lg text-[#2a2a2a]" >Question 2:</p>
+              <input className="bg-white w-full p-2 rounded-sm outline-none"  type="text" name="question2" placeholder="Enter Your Question 2 ?" required/>
+            </div>
 
-            <button className="bg-[#19cb98] px-3 py-2 text-lg" type="button" onClick={handleAddQuestion}>
-              Add More Question
-            </button>
+            <div>
+              <p className="text-lg text-[#2a2a2a]" >Question 3:</p>
+              <input className="bg-white w-full p-2 rounded-sm outline-none"  type="text" name="question3" placeholder="Enter Your Question 3 ?" required />
+            </div>
+
+            <div>
+              <p className="text-lg text-[#2a2a2a]" >Question 4:</p>
+              <input className="bg-white w-full p-2 rounded-sm outline-none"  type="text" name="question4" placeholder="Enter Your Question 4 ?" required />
+            </div>
+
+            <div>
+              <p className="text-lg text-[#2a2a2a]" >Question 5:</p>
+              <input className="bg-white w-full p-2 rounded-sm outline-none"  type="text" name="question5" placeholder="Enter Your Question 5 ?" required/>
+            </div>
+
+
+
+           </div>
+
+           
+
+
 
             <div className="my-5">
               <input
