@@ -45,13 +45,19 @@ const ManageUsers = () => {
             }
         });
         refetch()
+    }
 
-        // console.log(_id);
-        // axiosSecure.delete(`/api/v1/${_id}/deleteUser`)
-        // .then(res=>{
-        //     console.log(res.data);
-        //     refetch()
-        // })
+    // create admin
+    const handleMakeAdmin = (_id) => {
+        console.log(_id);
+        axiosSecure.patch(`/api/v1/create-admin/${_id}`)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    alert("update done")
+                    refetch()
+                }
+            })
     }
 
 
@@ -71,12 +77,15 @@ const ManageUsers = () => {
         },
         {
             name: "Admin Role",
-            cell: (row) =>
-            (
-                <button className=" text-xl text-[#5ae4a7]  flex ">
-                    <GrUserAdmin />
-                </button>
-            )
+            cell: (row) => {
+                return row.role === "admin" ? 'Admin'
+                    : (
+                        <button onClick={() => handleMakeAdmin(row._id)} className=" text-xl text-[#5ae4a7]  flex ">
+                            <GrUserAdmin />
+                        </button>
+                    )
+            }
+
 
         },
         {

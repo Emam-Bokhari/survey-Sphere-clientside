@@ -14,7 +14,7 @@ const useAxiosSecure = () => {
         return response
     },(error)=>{
         const status=error.response?.status 
-        console.log('status error emam',status);
+        console.log('status error',status);
         
            if(status===401||status===403){
             signOut(auth)
