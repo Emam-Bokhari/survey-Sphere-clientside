@@ -17,6 +17,7 @@ import UserReport from './../Pages/Dashboard/Surveyor/UserReport/UserReport';
 import SurveyorSurveyResponses from './../Pages/Dashboard/Surveyor/SurveyorSurveyResponses/SurveyorSurveyResponses';
 import SurveyDetails from "../Pages/SurveysPage/SurveyDetails/SurveyDetails";
 import StartSurvey from "../Pages/SurveysPage/StartSurvey/StartSurvey";
+import PrivateRoute from "../PrivateRoute/PrivateRoute";
 
 
 
@@ -64,7 +65,7 @@ const Router = createBrowserRouter([
 
     {
         path: "/dashboard",
-        element: <DashboardLayout />,
+        element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         children: [
             // surveyor dashboard
             {
