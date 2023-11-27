@@ -6,6 +6,7 @@ import DataTable from "react-data-table-component";
 import { FaEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const ManageSurvey = () => {
     const [surveys,refetch]=useSurvey()
@@ -58,9 +59,11 @@ const handleDeleteSurvey = (_id) => {
         {
             name: "Action",
             cell: (row) =>   (
+               <Link to={`/dashboard/updateSurvey/${row._id}`} >
                 <button className="bg-[#5ae4a7] px-3 py-1 rounded text-[#2a2a2a] flex items-center gap-1">
                     <FaEdit className="text-lg" />Update
                 </button>
+               </Link>
             )
         },
         {

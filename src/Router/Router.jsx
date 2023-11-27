@@ -20,6 +20,7 @@ import StartSurvey from "../Pages/SurveysPage/StartSurvey/StartSurvey";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AdminRoute from "../PrivateRoute/AdminRoute";
 import SurveyorRoute from "../PrivateRoute/SurveyorRoute";
+import UpdateSurvey from "../Pages/Dashboard/Surveyor/ManageSurvey/UpdateSurvey/UpdateSurvey";
 
 
 
@@ -83,6 +84,11 @@ const Router = createBrowserRouter([
                 element: <SurveyorRoute><ManageSurvey /></SurveyorRoute>
             },
             {
+                path: "/dashboard/updateSurvey/:id",
+                loader:({params})=>fetch(`http://localhost:3000/api/v1/${params.id}/survey-details`),
+                element: <UpdateSurvey />
+            },
+            {
                 path: "/dashboard/surveyor/surveyResponses",
                 element: <SurveyorRoute><SurveyorSurveyResponses /></SurveyorRoute>
             },
@@ -93,7 +99,7 @@ const Router = createBrowserRouter([
             // admin dashboard
             {
                 path: "/dashboard/adminHome",
-                element:<AdminRoute> <AdminHome /></AdminRoute>
+                element: <AdminRoute> <AdminHome /></AdminRoute>
             },
             {
                 path: "/dashboard/manageUsers",
