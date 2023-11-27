@@ -3,12 +3,14 @@ import { useContext } from 'react';
 import { AuthContext } from "../../../../../AuthProvider/AuthProvider";
 import SectionTitle from "../../../SectionTitle/SectionTitle";
 import Search from "../../../Sidebar/Search/Search";
+import useAxiosSecure from "../../../../../hooks/useAxiosSecure";
 
 const UpdateSurvey = () => {
     const survey = useLoaderData()
     // console.log(survey);
     const { user } = useContext(AuthContext)
-    const { surveyTitle, date, description, question1, question2, question3, question4, question5 } = survey || {}
+    const { surveyTitle, date, description, question1, question2, question3, question4, question5 ,_id } = survey || {}
+    const axiosSecure=useAxiosSecure()
 
     const handleUpdateSurvey = async (event) => {
         event.preventDefault();
@@ -26,7 +28,14 @@ const UpdateSurvey = () => {
             question4: form.question4.value,
             question5: form.question5.value,
         };
-console.log(updateSurveyData);
+        // console.log(updateSurveyData);
+
+        const surveyRes = await axiosSecure.patch(`/api/v1/${_id}/update-survey`, updateSurveyData)
+            console.log(surveyRes.data);
+            if (surveyRes.data.modifiedCount>0) {
+                alert("Update Survey!")
+            }
+
 
     }
 
