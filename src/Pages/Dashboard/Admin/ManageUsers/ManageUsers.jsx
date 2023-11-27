@@ -117,7 +117,7 @@ const ManageUsers = () => {
         {
             name: "Action",
             cell: (row) => (
-                <button onClick={() => handleDeleteUser(row._id)} className="bg-red-500 px-3 py-1 rounded text-white flex items-center gap-1">
+                <button onClick={() => handleDeleteUser(row._id)} className="bg-[#ed5e68] px-3 py-1 rounded text-white flex items-center gap-1">
                     <AiFillDelete className="text-lg" />  Delete
                 </button>
             )

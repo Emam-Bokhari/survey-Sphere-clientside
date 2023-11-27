@@ -3,8 +3,21 @@ import { Link, NavLink } from "react-router-dom";
 import { FaCircleUser } from "react-icons/fa6";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
 
 const Navbar = () => {
+
+    // const axiosPublic=useAxiosPublic()
+    
+    // const {data:users=[]}=useQuery({
+    //     queryKey:['users'],
+    //     queryFn:async()=>{
+    //         const res=await axiosPublic.get("/api/v1/all-users")
+    //         return res.data
+    //     }
+    // })
+    
  
     const { user, logout } = useContext(AuthContext);
 

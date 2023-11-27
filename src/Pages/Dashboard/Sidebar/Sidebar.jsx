@@ -10,12 +10,25 @@ import { RiSurveyLine } from "react-icons/ri";
 import { MdReport } from "react-icons/md";
 import useAdmin from "../../../hooks/useAdmin/useAdmin";
 import useSurveyor from "../../../hooks/useSurveyor";
+import { useContext } from "react";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import { AiOutlineLogout } from "react-icons/ai";
 
 const Sidebar = () => {
 
     const [isAdmin] = useAdmin()
     const [isSurveyor] = useSurveyor()
+    const {logout}=useContext(AuthContext)
 
+    const handleLogout = () => {
+        logout()
+            .then(() => {
+                return alert('Logout Successful!');
+            })
+            .catch((error) => {
+                return alert(error.message);
+            });
+    };
 
     return (
         <div className="my-10" >
@@ -66,6 +79,14 @@ const Sidebar = () => {
 
 
                     <li className="px-4 py-1 hover:bg-blue-100 rounded cursor-pointer" ><Link className="flex items-center gap-1" to="#" > <MdOutlineEmail className="text-xl" />Contact</Link></li>
+
+                    <li className="px-4 py-1 hover:bg-blue-100 rounded cursor-pointer" >
+
+                        <button onClick={handleLogout} className="flex items-center gap-1 text-red-500 font-medium"  > <AiOutlineLogout  className="text-xl" />
+                        Logout
+                        </button>
+
+                        </li>
 
                 </ul>
 
