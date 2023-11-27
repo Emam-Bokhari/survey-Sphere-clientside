@@ -19,6 +19,7 @@ import SurveyDetails from "../Pages/SurveysPage/SurveyDetails/SurveyDetails";
 import StartSurvey from "../Pages/SurveysPage/StartSurvey/StartSurvey";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AdminRoute from "../PrivateRoute/AdminRoute";
+import SurveyorRoute from "../PrivateRoute/SurveyorRoute";
 
 
 
@@ -71,23 +72,23 @@ const Router = createBrowserRouter([
             // surveyor dashboard
             {
                 path: "/dashboard/surveyorHome",
-                element: <SurveyorHome />
+                element: <SurveyorRoute><SurveyorHome /></SurveyorRoute>
             },
             {
                 path: "/dashboard/createSurvey",
-                element: <CreateSurvey />
+                element: <SurveyorRoute><CreateSurvey /></SurveyorRoute>
             },
             {
                 path: "/dashboard/manageSurvey",
-                element: <ManageSurvey />
+                element: <SurveyorRoute><ManageSurvey /></SurveyorRoute>
             },
             {
                 path: "/dashboard/surveyor/surveyResponses",
-                element: <SurveyorSurveyResponses />
+                element: <SurveyorRoute><SurveyorSurveyResponses /></SurveyorRoute>
             },
             {
                 path: "/dashboard/userReport",
-                element: <UserReport />
+                element: <SurveyorRoute><UserReport /></SurveyorRoute>
             },
             // admin dashboard
             {
