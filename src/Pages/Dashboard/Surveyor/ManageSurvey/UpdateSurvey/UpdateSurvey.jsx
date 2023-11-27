@@ -4,6 +4,7 @@ import { AuthContext } from "../../../../../AuthProvider/AuthProvider";
 import SectionTitle from "../../../SectionTitle/SectionTitle";
 import Search from "../../../Sidebar/Search/Search";
 import useAxiosSecure from "../../../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const UpdateSurvey = () => {
     const survey = useLoaderData()
@@ -30,11 +31,30 @@ const UpdateSurvey = () => {
         };
         // console.log(updateSurveyData);
 
-        const surveyRes = await axiosSecure.patch(`/api/v1/${_id}/update-survey`, updateSurveyData)
-            console.log(surveyRes.data);
-            if (surveyRes.data.modifiedCount>0) {
-                alert("Update Survey!")
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, update it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                 axiosSecure.patch(`/api/v1/${_id}/update-survey`, updateSurveyData)
+                    .then(res => {
+                        if (res.data.modifiedCount>0)  {
+                            Swal.fire({
+                                title: "Updated!",
+                                text: "Survey has been updated.",
+                                icon: "success"
+                            });
+                        }
+                    })
             }
+        });
+
 
 
     }

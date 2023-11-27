@@ -1,7 +1,8 @@
 import { useContext } from "react";
 import { AuthContext } from './../../../../AuthProvider/AuthProvider';
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-
+import { toast,ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const CreateSurvey = () => {
   const axiosPublic=useAxiosPublic()
@@ -33,7 +34,7 @@ const CreateSurvey = () => {
     const createSurveyRes=await axiosPublic.post("/api/v1/create-survey",createSurvey)
     console.log(createSurveyRes.data);
     if(createSurveyRes.data.insertedId){
-      alert('Survey successfully created!')
+      toast.success('Survey successfully created!')
     }
 
 

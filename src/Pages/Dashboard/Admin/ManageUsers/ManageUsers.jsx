@@ -36,7 +36,7 @@ const ManageUsers = () => {
                 axiosSecure.delete(`/api/v1/${_id}/deleteUser`)
                     .then(res => {
                         if (res.data.deletedCount > 0) {
-                            refetch();
+                            refetch()
                             Swal.fire({
                                 title: "Deleted!",
                                 text: "User has been deleted.",
@@ -46,33 +46,63 @@ const ManageUsers = () => {
                     })
             }
         });
-        refetch()
     }
 
     // create admin
     const handleMakeAdmin = (_id) => {
-        // console.log(_id);
-        axiosSecure.patch(`/api/v1/create-admin/${_id}`)
-            .then(res => {
-                console.log(res.data);
-                if (res.data.modifiedCount > 0) {
-                    alert("update done")
-                    refetch()
-                }
-            })
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, update it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axiosSecure.patch(`/api/v1/create-admin/${_id}`)
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                title: "Updated!",
+                                text: "User has been updated.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
     }
 
     // create surveyor
     const handleMakeSurveyor = (_id) => {
-        console.log(_id);
-        axiosSecure.patch(`/api/v1/create-surveyor/${_id}`)
-            .then(res => {
-                console.log(res.data);
-                if (res.data.modifiedCount > 0) {
-                    alert("update done")
-                    refetch()
-                }
-            })
+        // console.log(_id);
+        Swal.fire({
+            title: "Are you sure?",
+            text: "You won't be able to revert this!",
+            icon: "warning",
+            showCancelButton: true,
+            confirmButtonColor: "#3085d6",
+            cancelButtonColor: "#d33",
+            confirmButtonText: "Yes, update it!"
+        }).then((result) => {
+            if (result.isConfirmed) {
+
+                axiosSecure.patch(`/api/v1/create-surveyor/${_id}`)
+                    .then(res => {
+                        if (res.data.modifiedCount > 0) {
+                            refetch()
+                            Swal.fire({
+                                title: "Updated!",
+                                text: "User has been updated.",
+                                icon: "success"
+                            });
+                        }
+                    })
+            }
+        });
     }
 
 

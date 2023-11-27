@@ -4,7 +4,8 @@ import Navbar from "../../sharedComponents/Navbar/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
-
+import { toast, ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 
 const SignUp = () => {
@@ -43,7 +44,7 @@ const SignUp = () => {
                 const userInfo = {
                     email: email
                 }
-                console.log(userInfo);
+                // console.log(userInfo);
 
                 // send user data in server
                 axiosPublic.post("/api/v1/users", userInfo)
@@ -52,10 +53,10 @@ const SignUp = () => {
                     })
 
                 // navigate(location?.state?location.state:"/")
-                return alert('Your account has been created successfully!')
+                return toast.success('Your account has been created successfully!')
             })
             .catch((error) => {
-                return alert(error.message);
+                return toast.error(error.message);
             })
     }
 
@@ -63,7 +64,7 @@ const SignUp = () => {
     const handleGoogleSignin = () => {
         googleSignin()
             .then((res) => {
-                console.log(res);
+                // console.log(res);
 
                 const userInfo = {
                     name: res.user?.displayName,
@@ -77,7 +78,7 @@ const SignUp = () => {
                     })
 
                 // navigate(location?.state?location.state:"/")
-                return alert('Login Successful by Google')
+                return toast.success('Login Successful by Google')
 
             })
             .catch()
@@ -155,6 +156,7 @@ const SignUp = () => {
 
                 </div>
             </div>
+            <ToastContainer />
 
         </div>
     );

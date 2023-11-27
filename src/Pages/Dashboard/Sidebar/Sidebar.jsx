@@ -13,6 +13,8 @@ import useSurveyor from "../../../hooks/useSurveyor";
 import { useContext } from "react";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import { AiOutlineLogout } from "react-icons/ai";
+import { toast,ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Sidebar = () => {
 
@@ -23,10 +25,10 @@ const Sidebar = () => {
     const handleLogout = () => {
         logout()
             .then(() => {
-                return alert('Logout Successful!');
+                return toast.success('Logout Successful!');
             })
             .catch((error) => {
-                return alert(error.message);
+                return toast.error(error.message);
             });
     };
 
@@ -91,6 +93,7 @@ const Sidebar = () => {
                 </ul>
 
             </nav>
+            <ToastContainer/>
         </div>
     );
 };

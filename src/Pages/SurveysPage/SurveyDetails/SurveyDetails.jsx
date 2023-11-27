@@ -7,7 +7,8 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { FaComment } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import CommentData from "./CommentData";
-
+import { toast,ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 
 const SurveyDetails = () => {
@@ -52,7 +53,7 @@ const SurveyDetails = () => {
 
         const commentRes = await axiosPublic.post("/api/v1/comment", commentInfo)
         if (commentRes.data.insertedId) {
-            alert('Your comment done!')
+            toast.success('Your comment has been published!')
         }
         form.reset()
         console.log(commentRes.data);
@@ -166,7 +167,7 @@ const SurveyDetails = () => {
 
 
 
-
+<ToastContainer/>
         </div>
     );
 };

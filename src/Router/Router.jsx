@@ -29,6 +29,8 @@ const Router = createBrowserRouter([
         path: "/",
         element: <MainLayout />,
         children: [
+
+            
             // common
             {
                 path: "/",
@@ -54,6 +56,8 @@ const Router = createBrowserRouter([
             },
         ]
     },
+
+
     // signin and signup
     {
         path: "/signin",
@@ -70,6 +74,8 @@ const Router = createBrowserRouter([
         path: "/dashboard",
         element: <PrivateRoute><DashboardLayout /></PrivateRoute>,
         children: [
+
+
             // surveyor dashboard
             {
                 path: "/dashboard/surveyorHome",
@@ -86,7 +92,7 @@ const Router = createBrowserRouter([
             {
                 path: "/dashboard/updateSurvey/:id",
                 loader:({params})=>fetch(`http://localhost:3000/api/v1/${params.id}/secure-surveys`),
-                element: <UpdateSurvey />
+                element: <SurveyorRoute><UpdateSurvey /></SurveyorRoute>
             },
             {
                 path: "/dashboard/surveyor/surveyResponses",
@@ -96,6 +102,8 @@ const Router = createBrowserRouter([
                 path: "/dashboard/userReport",
                 element: <SurveyorRoute><UserReport /></SurveyorRoute>
             },
+
+
             // admin dashboard
             {
                 path: "/dashboard/adminHome",

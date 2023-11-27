@@ -1,3 +1,4 @@
+'use client'
 import { BiMenu } from "react-icons/bi";
 import { Link, NavLink } from "react-router-dom";
 import { FaCircleUser } from "react-icons/fa6";
@@ -6,10 +7,13 @@ import { AuthContext } from "../../AuthProvider/AuthProvider";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useQuery } from "@tanstack/react-query";
 
+import { toast,ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
+
 const Navbar = () => {
 
     // const axiosPublic=useAxiosPublic()
-    
+
     // const {data:users=[]}=useQuery({
     //     queryKey:['users'],
     //     queryFn:async()=>{
@@ -17,8 +21,8 @@ const Navbar = () => {
     //         return res.data
     //     }
     // })
-    
- 
+
+
     const { user, logout } = useContext(AuthContext);
 
 
@@ -26,10 +30,10 @@ const Navbar = () => {
     const handleLogout = () => {
         logout()
             .then(() => {
-                return alert('Logout Successful!');
+                return toast.success('Logout Successful!');
             })
             .catch((error) => {
-                return alert(error.message);
+                return toast.error(error.message);
             });
     };
 
@@ -113,41 +117,42 @@ const Navbar = () => {
 
                 <div className="navbar-end">
                     {/* Conditional rendering of user profile or login button */}
-                     {/* button */}
-                {user ? (
-                    <div className="space-y-2">
-                        <div className="flex gap-3 items-center ">
-                            {user.photoURL ? (
-                                <img
-                                    className="w-9 h-9 rounded-full border-2 border-gray-300"
-                                    src={user.photoURL}
+                    {/* button */}
+                    {user ? (
+                        <div className="space-y-2">
+                            <div className="flex gap-3 items-center ">
+                                {user.photoURL ? (
+                                    <img
+                                        className="w-9 h-9 rounded-full border-2 border-gray-300"
+                                        src={user.photoURL}
 
-                                />
-                            ) : (
-                                <FaCircleUser className="text-3xl" />
-                            )}
-                            <p>{user.displayName || "User"}</p>
-                        </div>
-                        <button
-                            onClick={handleLogout}
-                            className="bg-[#19cb98] px-3 py-1 rounded-sm text-[#2a2a2a] font-semibold text-lg"
-                        >
-                            Logout
-                        </button>
-                    </div>
-                ) : (
-                    <div className="flex gap-3 items-center">
-                        <FaCircleUser className="text-3xl" />
-                        <Link to="/signin">
-                            <button className="bg-[#19cb98] px-2 py-1 rounded-sm text-lg font-semibold text-[#2a2a2a] tracking-wide">
-                                Login
+                                    />
+                                ) : (
+                                    <FaCircleUser className="text-3xl" />
+                                )}
+                                <p>{user.displayName || "User"}</p>
+                            </div>
+                            <button
+                                onClick={handleLogout}
+                                className="bg-[#19cb98] px-3 py-1 rounded-sm text-[#2a2a2a] font-semibold text-lg"
+                            >
+                                Logout
                             </button>
-                        </Link>
-                    </div>
-                )}
+                        </div>
+                    ) : (
+                        <div className="flex gap-3 items-center">
+                            <FaCircleUser className="text-3xl" />
+                            <Link to="/signin">
+                                <button className="bg-[#19cb98] px-2 py-1 rounded-sm text-lg font-semibold text-[#2a2a2a] tracking-wide">
+                                    Login
+                                </button>
+                            </Link>
+                        </div>
+                    )}
                 </div>
-                
+
             </div>
+            <ToastContainer />
         </div>
     );
 };

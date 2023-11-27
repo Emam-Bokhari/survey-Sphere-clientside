@@ -8,6 +8,7 @@ const MainLayout = () => {
 
             {/* Outlet */}
             <Outlet />
+            
 
         </div>
     );

@@ -2,7 +2,8 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import Navbar from "../sharedComponents/Navbar/Navbar";
 import { useContext } from "react";
 import { AuthContext } from "../AuthProvider/AuthProvider";
-
+import { toast,ToastContainer } from 'react-toastify';
+import "react-toastify/dist/ReactToastify.css";
 
 const Signin = () => {
 
@@ -16,17 +17,17 @@ const Signin = () => {
         const form = event.target
         const email = form.email.value
         const password = form.password.value
-        console.log(email, password);
+        // console.log(email, password);
 
         // siginin with email and password
         signin(email, password)
         .then(() => {
             // navigate(location?.state?location.state:"/")
-            return alert('Login Successfull!')
+            return toast.success('Login Successfull!')
 
         })
         .catch((error) => {
-            return alert(error.message)
+            return toast.error(error.message)
         })
     }
 
@@ -88,7 +89,7 @@ const Signin = () => {
 
                 </div>
             </div>
-
+<ToastContainer/>
 
         </div>
     );

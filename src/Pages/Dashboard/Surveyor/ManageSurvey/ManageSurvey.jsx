@@ -40,7 +40,6 @@ const handleDeleteSurvey = (_id) => {
                 })
         }
     });
-    refetch()
 }
     
     const columns = [
