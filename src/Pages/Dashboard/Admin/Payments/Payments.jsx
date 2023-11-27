@@ -1,8 +1,9 @@
+import Search from "../../Sidebar/Search/Search";
 
 const Payments = () => {
     return (
         <div>
-            <h2>Payments</h2>
+            <Search />
         </div>
     );
 };

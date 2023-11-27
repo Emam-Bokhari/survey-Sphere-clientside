@@ -20,9 +20,10 @@ const Sidebar = () => {
             <nav className="w-[250px] " >
 
                 <div className="flex justify-center" >
-                    <img className="w-24 h-24" src="https://i.ibb.co/JcLhbRf/logo.png" alt="" />
+                    <h2 className="text-xl font-bold" >Survey <span className="text-[#5ae4a7]" >Sphere</span></h2>
                 </div>
 
+                
                 <ul className="p-4" >
 
                     {

@@ -1,8 +1,9 @@
+import Search from "../../Sidebar/Search/Search";
 
 const SurveyResponses = () => {
     return (
         <div>
-            <h2>Survey Responses</h2>
+            <Search />
         </div>
     );
 };

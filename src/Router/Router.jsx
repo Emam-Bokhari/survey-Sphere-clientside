@@ -18,6 +18,7 @@ import SurveyorSurveyResponses from './../Pages/Dashboard/Surveyor/SurveyorSurve
 import SurveyDetails from "../Pages/SurveysPage/SurveyDetails/SurveyDetails";
 import StartSurvey from "../Pages/SurveysPage/StartSurvey/StartSurvey";
 import PrivateRoute from "../PrivateRoute/PrivateRoute";
+import AdminRoute from "../PrivateRoute/AdminRoute";
 
 
 
@@ -91,19 +92,19 @@ const Router = createBrowserRouter([
             // admin dashboard
             {
                 path: "/dashboard/adminHome",
-                element: <AdminHome />
+                element:<AdminRoute> <AdminHome /></AdminRoute>
             },
             {
                 path: "/dashboard/manageUsers",
-                element: <ManageUsers />
+                element: <AdminRoute><ManageUsers /></AdminRoute>
             },
             {
                 path: "/dashboard/payments",
-                element: <Payments />
+                element: <AdminRoute><Payments /></AdminRoute>
             },
             {
                 path: "/dashboard/admin/surveyResponses",
-                element: <SurveyResponses />
+                element: <AdminRoute><SurveyResponses /></AdminRoute>
             }
         ]
     }

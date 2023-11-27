@@ -5,6 +5,8 @@ import { AiFillDelete } from "react-icons/ai";
 import { GrUserAdmin } from "react-icons/gr";
 import { FaUserEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
+import Search from "../../Sidebar/Search/Search";
+import SectionTitle from "../../SectionTitle/SectionTitle";
 
 const ManageUsers = () => {
 
@@ -49,8 +51,21 @@ const ManageUsers = () => {
 
     // create admin
     const handleMakeAdmin = (_id) => {
-        console.log(_id);
+        // console.log(_id);
         axiosSecure.patch(`/api/v1/create-admin/${_id}`)
+            .then(res => {
+                console.log(res.data);
+                if (res.data.modifiedCount > 0) {
+                    alert("update done")
+                    refetch()
+                }
+            })
+    }
+
+    // create surveyor
+    const handleMakeSurveyor = (_id) => {
+        console.log(_id);
+        axiosSecure.patch(`/api/v1/create-surveyor/${_id}`)
             .then(res => {
                 console.log(res.data);
                 if (res.data.modifiedCount > 0) {
@@ -90,12 +105,13 @@ const ManageUsers = () => {
         },
         {
             name: "Surveyor Role",
-            cell: (row) =>
-            (
-                <button className=" text-xl text-[#2a2a2a]  flex ">
-                    <FaUserEdit />
-                </button>
-            )
+            cell: (row) => {
+                return row.role === "surveyor" ? 'Surveyor' : (
+                    <button onClick={() => handleMakeSurveyor(row._id)} className=" text-xl text-[#2a2a2a]  flex ">
+                        <FaUserEdit />
+                    </button>
+                )
+            }
 
         },
         {
@@ -109,15 +125,21 @@ const ManageUsers = () => {
     ]
 
     return (
-        <div className="my-10 p-6">
+        <div>
 
-            <DataTable
-                columns={columns}
-                data={users}
-                pagination
-                highlightOnHover
-                responsive
-            />
+            <Search />
+
+            <SectionTitle title="Manage Users" />
+
+            <div className="my-10 px-6" >
+                <DataTable
+                    columns={columns}
+                    data={users}
+                    pagination
+                    highlightOnHover
+                    responsive
+                />
+            </div>
 
         </div>
     );

@@ -4,12 +4,13 @@ import Sidebar from "../../Pages/Dashboard/Sidebar/Sidebar";
 const DashboardLayout = () => {
     return (
         <div>
-            <div className="flex min-h-screen gap-10" >
+            <div className="flex min-h-screen" >
 
                 {/* sidebar */}
                 <div className="bg-[#f3f7fa]" >
                     <Sidebar />
                 </div>
+
 
 
                 {/* outlet */}

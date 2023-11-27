@@ -1,8 +1,12 @@
+import Search from "../../Sidebar/Search/Search";
 
 const AdminHome = () => {
     return (
         <div>
-            <h2>Admin Home</h2>
+
+            {/* Search, and notification */}
+            <Search />
+            
         </div>
     );
 };
