@@ -85,7 +85,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/dashboard/updateSurvey/:id",
-                loader:({params})=>fetch(`http://localhost:3000/api/v1/${params.id}/survey-details`),
+                loader:({params})=>fetch(`http://localhost:3000/api/v1/${params.id}/secure-surveys`),
                 element: <UpdateSurvey />
             },
             {
