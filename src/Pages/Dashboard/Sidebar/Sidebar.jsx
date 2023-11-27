@@ -8,10 +8,12 @@ import { MdOutlineEmail } from "react-icons/md";
 import { IoIosCreate } from "react-icons/io";
 import { RiSurveyLine } from "react-icons/ri";
 import { MdReport } from "react-icons/md";
+import useAdmin from "../../../hooks/useAdmin/useAdmin";
 
 const Sidebar = () => {
 
-    const isAdmin = true
+    const [isAdmin] = useAdmin()
+
 
     return (
         <div className="my-10" >
