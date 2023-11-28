@@ -10,8 +10,8 @@ const UpdateSurvey = () => {
     const survey = useLoaderData()
     // console.log(survey);
     const { user } = useContext(AuthContext)
-    const { surveyTitle, date, description, question1, question2, question3, question4, question5 ,_id } = survey || {}
-    const axiosSecure=useAxiosSecure()
+    const { surveyTitle, date, description, question1, question2, question3, question4, question5, _id } = survey || {}
+    const axiosSecure = useAxiosSecure()
 
     const handleUpdateSurvey = async (event) => {
         event.preventDefault();
@@ -24,10 +24,6 @@ const UpdateSurvey = () => {
             date: form.date.value,
             description: form.description.value,
             question1: form.question1.value,
-            question2: form.question2.value,
-            question3: form.question3.value,
-            question4: form.question4.value,
-            question5: form.question5.value,
         };
         // console.log(updateSurveyData);
 
@@ -42,9 +38,9 @@ const UpdateSurvey = () => {
         }).then((result) => {
             if (result.isConfirmed) {
 
-                 axiosSecure.patch(`/api/v1/${_id}/update-survey`, updateSurveyData)
+                axiosSecure.patch(`/api/v1/${_id}/update-survey`, updateSurveyData)
                     .then(res => {
-                        if (res.data.modifiedCount>0)  {
+                        if (res.data.modifiedCount > 0) {
                             Swal.fire({
                                 title: "Updated!",
                                 text: "Survey has been updated.",
@@ -126,28 +122,6 @@ const UpdateSurvey = () => {
                                 <p className="text-lg text-[#2a2a2a]" >Question 1:</p>
                                 <input className="bg-white w-full p-2 rounded-sm outline-none" type="text" name="question1" placeholder="Enter Your Question 1 ?" required defaultValue={question1} />
                             </div>
-
-                            <div>
-                                <p className="text-lg text-[#2a2a2a]" >Question 2:</p>
-                                <input className="bg-white w-full p-2 rounded-sm outline-none" type="text" name="question2" placeholder="Enter Your Question 2 ?" required defaultValue={question2} />
-                            </div>
-
-                            <div>
-                                <p className="text-lg text-[#2a2a2a]" >Question 3:</p>
-                                <input className="bg-white w-full p-2 rounded-sm outline-none" type="text" name="question3" placeholder="Enter Your Question 3 ?" required defaultValue={question3} />
-                            </div>
-
-                            <div>
-                                <p className="text-lg text-[#2a2a2a]" >Question 4:</p>
-                                <input className="bg-white w-full p-2 rounded-sm outline-none" type="text" name="question4" placeholder="Enter Your Question 4 ?" required defaultValue={question4} />
-                            </div>
-
-                            <div>
-                                <p className="text-lg text-[#2a2a2a]" >Question 5:</p>
-                                <input className="bg-white w-full p-2 rounded-sm outline-none" type="text" name="question5" placeholder="Enter Your Question 5 ?" required defaultValue={question5} />
-                            </div>
-
-
 
                         </div>
 

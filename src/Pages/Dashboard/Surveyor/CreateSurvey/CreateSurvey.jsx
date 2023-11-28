@@ -19,15 +19,9 @@ const CreateSurvey = () => {
       category: form.category.value,
       date: form.date.value,
       description: form.description.value,
-      question1:form.question1.value,
-      question2:form.question2.value,
-      question3:form.question3.value,
-      question4:form.question4.value,
-      question5:form.question5.value,
+      time: new Date().toLocaleTimeString(),
     };
 
-    
-    
 
     // console.log(createSurvey);
 
@@ -108,33 +102,7 @@ const CreateSurvey = () => {
               <input className="bg-white w-full p-2 rounded-sm outline-none"  type="text" name="question1" placeholder="Enter Your Question 1 ?"required />
             </div>
 
-            <div>
-              <p className="text-lg text-[#2a2a2a]" >Question 2:</p>
-              <input className="bg-white w-full p-2 rounded-sm outline-none"  type="text" name="question2" placeholder="Enter Your Question 2 ?" required/>
-            </div>
-
-            <div>
-              <p className="text-lg text-[#2a2a2a]" >Question 3:</p>
-              <input className="bg-white w-full p-2 rounded-sm outline-none"  type="text" name="question3" placeholder="Enter Your Question 3 ?" required />
-            </div>
-
-            <div>
-              <p className="text-lg text-[#2a2a2a]" >Question 4:</p>
-              <input className="bg-white w-full p-2 rounded-sm outline-none"  type="text" name="question4" placeholder="Enter Your Question 4 ?" required />
-            </div>
-
-            <div>
-              <p className="text-lg text-[#2a2a2a]" >Question 5:</p>
-              <input className="bg-white w-full p-2 rounded-sm outline-none"  type="text" name="question5" placeholder="Enter Your Question 5 ?" required/>
-            </div>
-
-
-
            </div>
-
-           
-
-
 
             <div className="my-5">
               <input

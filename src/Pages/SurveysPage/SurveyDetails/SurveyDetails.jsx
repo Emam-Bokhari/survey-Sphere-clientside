@@ -1,4 +1,4 @@
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useState } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Navbar from "../../../sharedComponents/Navbar/Navbar";
 import { AiFillLike, AiFillDislike } from "react-icons/ai";
@@ -7,30 +7,47 @@ import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { FaComment } from "react-icons/fa";
 import { useQuery } from "@tanstack/react-query";
 import CommentData from "./CommentData";
-import { toast,ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 
 const SurveyDetails = () => {
     const details = useLoaderData()
-    // console.log(details);
-    const { surveyTitle, description, _id } = details || {}
-    const { user } = useContext(AuthContext)
     const axiosPublic = useAxiosPublic()
+    const { user } = useContext(AuthContext)
+    const axiosSecure = useAxiosSecure()
+    const [likesCount, setLikesCount] = useState(0);
+    const { surveyTitle, description, _id } = details || {}
+
+
+
+
+    // all users data for comment 
+    const { data: users = [] } = useQuery({
+        queryKey: ['users'],
+        queryFn: async () => {
+            const res = await axiosPublic.get("/api/v1/all-users-for-pro")
+            return res.data
+        }
+    })
 
     const handleLike = async (_id) => {
-        // console.log('like', _id);
-        const surveyLike = {
-            surveyId: _id,
-            count: 1,
-            email: user?.email
-        }
-        const like = await axiosPublic.post("/api/v1/like-survey", surveyLike)
-        console.log(like.data);
-        if (like.data.insertedId) {
-            alert('like done')
-        }
+        
+        
 
+            setLikesCount((prevLikesCount) => prevLikesCount + 1);
+
+            // Send the PATCH request to update likes count
+            const res = await axiosPublic.patch(`/api/v1/survey/like/${_id}`, {
+                userName: user?.displayName,
+                userEmail: user?.email,
+                likesCount: likesCount + 1,
+            });
+
+            // Log the response data
+            console.log(res.data);
+       
 
     }
 
@@ -80,20 +97,29 @@ const SurveyDetails = () => {
 
 
     // report
-    const handleReport=(event)=>{
+    const handleReport = async (event) => {
         event.preventDefault()
         const form = event.target
         const report = form.report.value
 
-        const reportInfo={
-            email:user?.email,
-            name:user?.displayName,
-            reportId:_id,
+        const reportInfo = {
+            email: user?.email,
+            name: user?.displayName || 'User',
+            reportId: _id,
             report,
-            surveyTitle:surveyTitle
+            surveyTitle: surveyTitle
         }
         console.log(reportInfo);
+
+        // user send report in serverside
+        const createReportRes = await axiosSecure.post("/api/v1/create-report", reportInfo)
+        console.log(createReportRes.data);
+        if (createReportRes.data.insertedId) {
+            toast.success('Report send successfully!')
+        }
+        form.reset()
     }
+
 
 
 
@@ -113,7 +139,7 @@ const SurveyDetails = () => {
 
                 {/* like and dislike */}
                 <div className="text-2xl flex items-center gap-2" >
-                    <AiFillLike onClick={() => handleLike(_id)} className="cursor-pointer hover:text-blue-500" /> 0
+                    <AiFillLike onClick={() => handleLike(_id)} className="cursor-pointer hover:text-blue-500" /> {likesCount}
 
 
                     <AiFillDislike className="cursor-pointer hover:text-blue-500" /> 0
@@ -129,7 +155,7 @@ const SurveyDetails = () => {
 
 
             {/* comment */}
-            <form  onSubmit={handleComment} >
+            <form onSubmit={handleComment} >
 
                 <div className="flex gap-5" >
                     <FaComment className="text-6xl md:text-7xl lg:text-8xl" />
@@ -138,9 +164,14 @@ const SurveyDetails = () => {
 
                 </div>
 
-                <div className="text-end my-5 " >
-                    <input className="bg-[#5ae4a7] px-3 py-2 cursor-pointer rounded text-base font-semibold" type="submit" value="Submit" />
-                </div>
+                {/* comment button */}
+                {users.filter(user => user?.role == 'pro-user' ? <div className="my-5">
+                    <input
+                        className="bg-[#79C23F] w-full rounded-sm p-2 text-white font-simibold text-xl cursor-pointer"
+                        type="submit"
+                        value="Comment"
+                    />
+                </div> : "")}
 
             </form>
 
@@ -152,22 +183,16 @@ const SurveyDetails = () => {
             {/* Report */}
             <form onSubmit={handleReport} className="my-10" >
                 <h2 className=" text-xl md:text-2xl font-semibold text-red-500 my-2" >Report:</h2>
-<textarea name="report" className="border border-black outline-red-500 md:w-1/2 p-2 md:p-4 placeholder:text-red-500 placeholder:text-base" placeholder="Enter Your Report..."  ></textarea>
+                <textarea name="report" className="border border-black outline-red-500 md:w-1/2 p-2 md:p-4 placeholder:text-red-500 placeholder:text-base" placeholder="Enter Your Report..."  ></textarea>
 
-{/* button */}
-<div>
-<input className="px-4 py-2 bg-red-500 font-bold text-white rounded text-base md:text-lg" type="submit" value="Report" />
-</div>
+                {/* button */}
+                <div>
+                    <input className="px-4 py-2 bg-red-500 font-bold text-white rounded text-base md:text-lg" type="submit" value="Report" />
+                </div>
 
             </form>
 
-
-
-
-
-
-
-<ToastContainer/>
+            <ToastContainer />
         </div>
     );
 };

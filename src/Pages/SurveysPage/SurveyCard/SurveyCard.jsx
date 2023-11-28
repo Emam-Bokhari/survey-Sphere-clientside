@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const SurveyCard = ({ data }) => {
     // console.log(data);
-    const { surveyTitle, description,_id } = data || {};
+    const { surveyTitle, description, _id } = data || {};
 
     return (
 
@@ -20,7 +20,13 @@ const SurveyCard = ({ data }) => {
                         }
                     </p>
                 </div>
-                <p className="font-bold text-[#3abe2c]">Total Voted: 0</p>
+
+                <div className="flex justify-between" >
+                    <p className="font-bold text-[#3abe2c]">Total Voted: 0</p>
+
+                    <p className="font-bold text-blue-500">Total Like: 0</p>
+                </div>
+
             </div>
         </Link>
 

@@ -1,7 +1,11 @@
+import { useLoaderData } from "react-router-dom";
 import Navbar from "../../sharedComponents/Navbar/Navbar";
+import Accordian from "./Accordian/Accordian";
 import Banner from "./Banner/Banner";
 
 const Home = () => {
+    const reviewData=useLoaderData()
+    console.log(reviewData);
     return (
         <div>
 
@@ -10,6 +14,13 @@ const Home = () => {
 
             {/* Banner */}
             <Banner />
+
+
+            {/* Accordian */}
+            <Accordian />
+
+
+
 
         </div>
     );

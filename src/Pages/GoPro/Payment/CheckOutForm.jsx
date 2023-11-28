@@ -84,7 +84,6 @@ const CheckOutForm = () => {
                 month: '2-digit',
                 day: '2-digit'
             }),
-            status: 'pending'
         }
 
         const res = await axiosSecure.post("/payments", payment)
