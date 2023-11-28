@@ -42,7 +42,8 @@ const SignUp = () => {
         createUser(email, password)
             .then(() => {
                 const userInfo = {
-                    email: email
+                    email: email,
+                    role:'user'
                 }
                 // console.log(userInfo);
 
@@ -68,7 +69,8 @@ const SignUp = () => {
 
                 const userInfo = {
                     name: res.user?.displayName,
-                    email: res.user?.email
+                    email: res.user?.email,
+                    role:'user'
                 }
 
                 // send user data in serverside

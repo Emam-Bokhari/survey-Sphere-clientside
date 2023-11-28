@@ -7,6 +7,7 @@ import { FaUserEdit } from "react-icons/fa";
 import Swal from "sweetalert2";
 import Search from "../../Sidebar/Search/Search";
 import SectionTitle from "../../SectionTitle/SectionTitle";
+import { useState } from "react";
 
 const ManageUsers = () => {
 
@@ -19,6 +20,19 @@ const ManageUsers = () => {
             return res.data
         }
     })
+
+
+    const [selectedRole, setSelectedRole] = useState(''); // Step 1: State for selected role
+
+    // Step 3: Filter users based on the selected role
+    const filteredUsers = users.filter(user => {
+        if (selectedRole === '') {
+            return true; // Display all users if no role is selected
+        } else {
+            return user.role === selectedRole;
+        }
+    });
+
 
     // delete user
     const handleDeleteUser = (_id) => {
@@ -47,6 +61,9 @@ const ManageUsers = () => {
             }
         });
     }
+
+
+    
 
     // create admin
     const handleMakeAdmin = (_id) => {
@@ -106,7 +123,6 @@ const ManageUsers = () => {
     }
 
 
-
     const columns = [
         {
             name: "No",
@@ -119,6 +135,10 @@ const ManageUsers = () => {
         {
             name: "Email",
             selector: (row) => row.email
+        },
+        {
+            name: "Pro User",
+            selector: (row) => row.role === 'prouser' ? 'Prouser' : ''
         },
         {
             name: "Admin Role",
@@ -159,12 +179,29 @@ const ManageUsers = () => {
 
             <Search />
 
+            
+
             <SectionTitle title="Manage Users" />
+
+            <div className="px-6">
+                <label className="text-lg font-medium" htmlFor="roleFilter">Filter by Role: </label>
+                <select className=" text-base md:text-lg"
+                    id="roleFilter"
+                    onChange={(e) => setSelectedRole(e.target.value)}
+                    value={selectedRole}
+                >
+                    <option value="">All</option>
+                    <option value="user">User</option>
+                    <option value="prouser">Pro User</option>
+                    <option value="admin">Admin</option>
+                    <option value="surveyor">Surveyor</option>
+                </select>
+            </div>
 
             <div className="my-10 px-6" >
                 <DataTable
                     columns={columns}
-                    data={users}
+                    data={filteredUsers}
                     pagination
                     highlightOnHover
                     responsive
