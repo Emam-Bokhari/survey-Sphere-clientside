@@ -79,7 +79,11 @@ const CheckOutForm = () => {
             email: user?.email,
             price: totalPrice,
             transtionId: paymentIntent?.id,
-            date: new Date(),
+            date: new Date().toLocaleDateString('en-US', {
+                year: 'numeric',
+                month: '2-digit',
+                day: '2-digit'
+            }),
             status: 'pending'
         }
 
