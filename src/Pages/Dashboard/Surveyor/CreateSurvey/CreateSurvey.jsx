@@ -19,6 +19,7 @@ const CreateSurvey = () => {
       category: form.category.value,
       date: form.date.value,
       description: form.description.value,
+      question1: form.question1.value,
       time: new Date().toLocaleTimeString(),
     };
 

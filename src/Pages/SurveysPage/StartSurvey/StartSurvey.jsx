@@ -29,7 +29,7 @@ const StartSurvey = () => {
   }
 
   return (
-    <div>
+    <div className="mb-80" >
 
       {/* Navbar */}
 
@@ -55,7 +55,7 @@ const StartSurvey = () => {
 
         {/* submit button */}
         <div className="my-5" >
-          <input className="bg-[#5ae4a7] text-lg font-bold px-4 py-2 rounded" type="submit" value="Submit" />
+          <input className="bg-[#5ae4a7] text-lg font-bold px-4 py-2 rounded cursor-pointer" type="submit" value="Submit" />
         </div>
 
       </form>

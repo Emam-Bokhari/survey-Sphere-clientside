@@ -8,8 +8,8 @@ import "react-toastify/dist/ReactToastify.css";
 const Signin = () => {
 
     const { signin } = useContext(AuthContext)
-    // const navigate = useNavigate()
-    // const location=useLocation()
+    const navigate = useNavigate()
+    const location=useLocation()
 
 
     const handleSignin = (event) => {
@@ -22,7 +22,8 @@ const Signin = () => {
         // siginin with email and password
         signin(email, password)
         .then(() => {
-            // navigate(location?.state?location.state:"/")
+            navigate(location?.state?location.state:"/")
+            
             return toast.success('Login Successfull!')
 
         })

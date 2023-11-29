@@ -12,8 +12,8 @@ const SignUp = () => {
 
     const { createUser, googleSignin } = useContext(AuthContext)
     const axiosPublic = useAxiosPublic()
-    // const navigate = useNavigate()
-    // const location=useLocation()
+    const navigate = useNavigate()
+    const location=useLocation()
 
     const handleSignUp = (event) => {
         event.preventDefault()
@@ -53,7 +53,8 @@ const SignUp = () => {
                         console.log(res.data);
                     })
 
-                // navigate(location?.state?location.state:"/")
+                    navigate(location?.state?location.state:"/")
+
                 return toast.success('Your account has been created successfully!')
             })
             .catch((error) => {
@@ -79,7 +80,8 @@ const SignUp = () => {
                         console.log(result.data);
                     })
 
-                // navigate(location?.state?location.state:"/")
+                    navigate(location?.state?location.state:"/")
+                    
                 return toast.success('Login Successful by Google')
 
             })

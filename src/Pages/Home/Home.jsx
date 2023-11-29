@@ -1,11 +1,11 @@
-import { useLoaderData } from "react-router-dom";
+
 import Navbar from "../../sharedComponents/Navbar/Navbar";
-import Accordian from "./Accordian/Accordian";
+// import Accordian from "./Accordian/Accordian";
 import Banner from "./Banner/Banner";
+import RecentSurvey from "./RecentSurvey/RecentSurvey";
 
 const Home = () => {
-    const reviewData=useLoaderData()
-    console.log(reviewData);
+
     return (
         <div>
 
@@ -15,9 +15,12 @@ const Home = () => {
             {/* Banner */}
             <Banner />
 
+            {/* Recent Survey */}
+            <RecentSurvey />
+
 
             {/* Accordian */}
-            <Accordian />
+            {/* <Accordian /> */}
 
 
 

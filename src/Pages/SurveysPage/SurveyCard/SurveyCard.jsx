@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 const SurveyCard = ({ data }) => {
     // console.log(data);
-    const { surveyTitle, description, _id } = data || {};
+    const { surveyTitle, description, _id,category } = data || {};
 
     return (
 
@@ -12,6 +12,8 @@ const SurveyCard = ({ data }) => {
             <div className="bg-[#f7f7f7] p-8 rounded flex flex-col justify-between h-full">
                 <div className="space-y-2">
                     <h2 className="text-2xl font-bold text-[#2c2a37]">{surveyTitle}</h2>
+
+                    <h2 className="text-2xl font-bold text-[#76757a]"><span className="text-red-500" >Category:</span> {category}</h2>
 
                     <p className="text-[#76757a] flex-grow">
                         {description?.length > 60

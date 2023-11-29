@@ -6,12 +6,12 @@ import {getAuth} from "firebase/auth"
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCeEDpf3ZVitvVzyMPUkuJ7_NqShDxeKlY",
-  authDomain: "surveyspehere.firebaseapp.com",
-  projectId: "surveyspehere",
-  storageBucket: "surveyspehere.appspot.com",
-  messagingSenderId: "637939325111",
-  appId: "1:637939325111:web:beabaf95a1f50f1bfdd532"
+  apiKey: import.meta.env.VITE_APIKEY,
+  authDomain: import.meta.env.VITE_AUTH_DOMAIN,
+  projectId: import.meta.env.VITE_PROJECT_ID,
+  storageBucket: import.meta.env.VITE_STORAGE_BUCKET,
+  messagingSenderId:import.meta.env.VITE_MESSAGING_SENDER_ID,
+  appId:  import.meta.env.VITE_APP_ID
 };
 
 // Initialize Firebase

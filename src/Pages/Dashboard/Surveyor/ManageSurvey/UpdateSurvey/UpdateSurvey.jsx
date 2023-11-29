@@ -22,6 +22,7 @@ const UpdateSurvey = () => {
             surveyTitle: form.surveyTitle.value,
             category: form.category.value,
             date: form.date.value,
+            time: new Date().toLocaleTimeString(),
             description: form.description.value,
             question1: form.question1.value,
         };
