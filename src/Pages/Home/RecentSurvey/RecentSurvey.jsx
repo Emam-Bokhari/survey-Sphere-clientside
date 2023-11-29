@@ -24,7 +24,7 @@ const RecentSurvey = () => {
             </h2>
 
             <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5' >
-                {recentSurvey.map((item, index) => <RecentSurveyCard key={index} data={item} />)}
+                {recentSurvey.map((item, index) => item.status==='Publish' &&  <RecentSurveyCard key={index} data={item} />)}
             </div>
 
 

@@ -10,16 +10,18 @@ const UpdateSurvey = () => {
     const survey = useLoaderData()
     // console.log(survey);
     const { user } = useContext(AuthContext)
-    const { surveyTitle, date, description, question1, question2, question3, question4, question5, _id } = survey || {}
+    const { surveyTitle, date, description, question1,  _id,surveyorEmail } = survey || {}
     const axiosSecure = useAxiosSecure()
     const navigate=useNavigate()
+    console.log(survey);
+    console.log(surveyorEmail);
 
     const handleUpdateSurvey = async (event) => {
         event.preventDefault();
         const form = event.target;
 
         const updateSurveyData = {
-            email: form.email.value,
+            surveyorEmail:form.surveyorEmail.value,
             surveyTitle: form.surveyTitle.value,
             category: form.category.value,
             date: form.date.value,
@@ -76,7 +78,7 @@ const UpdateSurvey = () => {
                                     type="text"
                                     name="email"
                                     placeholder="Email"
-                                    defaultValue={user?.email}
+                                    defaultValue={surveyorEmail}
                                     readOnly
 
                                 />

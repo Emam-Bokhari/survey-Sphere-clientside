@@ -18,7 +18,10 @@ const SurveyDetails = () => {
     const { user } = useContext(AuthContext)
     const axiosSecure = useAxiosSecure()
     const [likesCount, setLikesCount] = useState(0);
-    const { surveyTitle, description, _id } = details || {}
+    const { surveyTitle, description, _id,surveyorEmail
+    } = details || {}
+
+    console.log(details);
 
 
 
@@ -103,6 +106,7 @@ const SurveyDetails = () => {
         const report = form.report.value
 
         const reportInfo = {
+            surveyorEmail:surveyorEmail,
             email: user?.email,
             name: user?.displayName || 'User',
             reportId: _id,

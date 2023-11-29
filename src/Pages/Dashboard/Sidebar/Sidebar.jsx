@@ -15,6 +15,8 @@ import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import { AiOutlineLogout } from "react-icons/ai";
 import { toast,ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { VscLayoutMenubar } from "react-icons/vsc";
+import { MdFeedback } from "react-icons/md";
 
 const Sidebar = () => {
 
@@ -52,6 +54,8 @@ const Sidebar = () => {
 
                             <li className="px-4 py-1 hover:bg-blue-100 rounded cursor-pointer" ><Link className="flex items-center gap-1" to="/dashboard/payments"  > <MdPayment className="text-xl" /> Payments</Link></li>
 
+                            <li className="px-4 py-1 hover:bg-blue-100 rounded cursor-pointer" ><Link className="flex items-center gap-1" to="/dashboard/surveyStatus" > <VscLayoutMenubar className="text-xl" /> Survey Status</Link></li>
+
                             <li className="px-4 py-1 hover:bg-blue-100 rounded cursor-pointer" ><Link className="flex items-center gap-1" to="/dashboard/admin/surveyResponses" > <FcSurvey className="text-xl" /> Survey Responses</Link></li>
                         </>}
 
@@ -65,7 +69,10 @@ const Sidebar = () => {
                         <li className="px-4 py-1 hover:bg-blue-100 rounded cursor-pointer" ><Link className="flex items-center gap-1" to="/dashboard/surveyor/surveyResponses" > <FcSurvey className="text-xl" /> Survey Responses</Link></li>
 
                         <li className="px-4 py-1 hover:bg-blue-100 rounded cursor-pointer" ><Link className="flex items-center gap-1" to="/dashboard/userReport" > <MdReport className="text-xl" /> User Report</Link></li>
+
+                        <li className="px-4 py-1 hover:bg-blue-100 rounded cursor-pointer" ><Link className="flex items-center gap-1" to="/dashboard/adminFeedback" > <MdFeedback className="text-xl" />Admin Feedback</Link></li>
                     </>}
+                    {/*  */}
 
 
                     {/* horizontal line */}

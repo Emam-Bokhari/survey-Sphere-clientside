@@ -4,11 +4,31 @@ import useAxiosPublic from "../../../../hooks/useAxiosPublic";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
 import { useNavigate } from "react-router-dom";
+import { useQuery } from "@tanstack/react-query";
 
 const CreateSurvey = () => {
   const axiosPublic = useAxiosPublic()
   const { user } = useContext(AuthContext)
   const navigate = useNavigate()
+
+  // /api/v1/all-users-for-pro
+  const { data: users = [] } = useQuery({
+    queryKey: ['users'],
+    queryFn: async () => {
+      const res = await axiosPublic.get("/api/v1/all-users-for-pro")
+      return res.data
+    }
+  })
+  console.log(users);
+
+  let singleUser
+  users?.forEach(item => {
+    if (item?.email === user?.email) {
+      singleUser = item
+    }
+
+    // console.log(singleUser)
+  });
 
 
   const handleCreateSurvey = async (event) => {
@@ -16,7 +36,7 @@ const CreateSurvey = () => {
     const form = event.target;
 
     const createSurvey = {
-      email: form.email.value,
+      surveyorEmail: singleUser?.email,
       surveyTitle: form.surveyTitle.value,
       category: form.category.value,
       date: form.date.value,
@@ -28,13 +48,17 @@ const CreateSurvey = () => {
 
     // console.log(createSurvey);
 
-    const createSurveyRes = await axiosPublic.post("/api/v1/create-survey", createSurvey)
-    console.log(createSurveyRes.data);
-    if (createSurveyRes.data.insertedId) {
-      navigate("/dashboard/manageSurvey")
-      toast.success('Survey successfully created!')
+    if (singleUser.role === 'surveyor') {
+      const createSurveyRes = await axiosPublic.post("/api/v1/create-survey", createSurvey)
+      console.log(createSurveyRes.data);
+      if (createSurveyRes.data.insertedId) {
+        navigate("/dashboard/manageSurvey")
+        toast.success('Survey successfully created!')
+      }
     }
-
+    else {
+      toast.error("you are not a surveyor")
+    }
 
   };
 
@@ -58,8 +82,8 @@ const CreateSurvey = () => {
                   className="bg-white p-2 rounded-sm w-full outline-none"
                   type="text"
                   name="email"
-                  placeholder="Email"
-                  defaultValue={user?.email}
+                  placeholder="Email" readOnly
+                  defaultValue={singleUser?.email}
                 />
               </div>
               <div className="flex-1">

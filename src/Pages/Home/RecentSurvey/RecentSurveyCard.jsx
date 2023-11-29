@@ -2,12 +2,10 @@ import { Link } from "react-router-dom";
 
 
 const RecentSurveyCard = ({ data }) => {
-    const { surveyTitle, description, _id, category } = data || {};
+    const { surveyTitle, description, _id, category,status } = data || {};
+    console.log(status);
     return (
         <div>
-
-
-
 
 
             <Link to={`/surveyDetails/${_id}`} className="flex flex-col min-h-full">

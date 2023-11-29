@@ -2,13 +2,15 @@ import { Link } from "react-router-dom";
 
 const SurveyCard = ({ data }) => {
     // console.log(data);
-    const { surveyTitle, description, _id,category } = data || {};
+    const { surveyTitle, description, _id,category ,status } = data || {};
+    console.log(status);
 
     return (
 
 
 
-        <Link to={`/surveyDetails/${_id}`} className="flex flex-col min-h-full">
+        <div>
+            {status==='Publish' && <Link to={`/surveyDetails/${_id}`} className="flex flex-col min-h-full">
             <div className="bg-[#f7f7f7] p-8 rounded flex flex-col justify-between h-full">
                 <div className="space-y-2">
                     <h2 className="text-2xl font-bold text-[#2c2a37]">{surveyTitle}</h2>
@@ -30,7 +32,8 @@ const SurveyCard = ({ data }) => {
                 </div>
 
             </div>
-        </Link>
+        </Link>}
+        </div>
 
 
     );

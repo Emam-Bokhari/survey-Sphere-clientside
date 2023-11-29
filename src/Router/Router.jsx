@@ -21,6 +21,8 @@ import PrivateRoute from "../PrivateRoute/PrivateRoute";
 import AdminRoute from "../PrivateRoute/AdminRoute";
 import SurveyorRoute from "../PrivateRoute/SurveyorRoute";
 import UpdateSurvey from "../Pages/Dashboard/Surveyor/ManageSurvey/UpdateSurvey/UpdateSurvey";
+import SurveyStatus from "../Pages/Dashboard/Admin/SurveyStatus/SurveyStatus";
+import AdminFeedback from "../Pages/Dashboard/Surveyor/AdninFeedback/AdminFeedback";
 
 
 
@@ -102,6 +104,10 @@ const Router = createBrowserRouter([
                 path: "/dashboard/userReport",
                 element: <SurveyorRoute><UserReport /></SurveyorRoute>
             },
+            {
+                path: "/dashboard/adminFeedback",
+                element: <SurveyorRoute><AdminFeedback /></SurveyorRoute>
+            },
 
 
             // admin dashboard
@@ -116,6 +122,10 @@ const Router = createBrowserRouter([
             {
                 path: "/dashboard/payments",
                 element: <AdminRoute><Payments /></AdminRoute>
+            },
+            {
+                path: "/dashboard/surveyStatus",
+                element: <AdminRoute><SurveyStatus /></AdminRoute>
             },
             {
                 path: "/dashboard/admin/surveyResponses",

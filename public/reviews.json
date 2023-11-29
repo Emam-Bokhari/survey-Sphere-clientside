@@ -1,0 +1,28 @@
+[
+    {
+        "id": 1,
+        "avatar": "https://i.ibb.co/vzhJV5T/businessman-working-laptop-computer-office-3d-character-isolated-white-background-40876-3756.jpg",
+        "testimonial": "The SurveySphere Polling and Survey application is superb! Its user-friendly interface, coupled with the MERN stack, guarantees a smooth and enjoyable experience. Two thumbs up!"
+    },
+    {
+        "id": 2,
+        "avatar": "https://i.ibb.co/3FY6qLZ/farmer-using-agricultural-technology-53876-120543.jpg",
+        "testimonial": 
+        "Absolutely adore SurveySphere Polling and Survey app. The React.js-powered UI/UX is exceptional, making survey creation and participation a breeze. I highly recommend it!"
+    },
+    {
+        "id": 3,
+        "avatar": "https://i.ibb.co/8xJczgv/download.png",
+        "testimonial": "The survey platform is incredibly user-friendly and makes the whole experience enjoyable."
+    },
+    {
+        "id": 4,
+        "avatar": "https://i.ibb.co/ZhDHsB3/young-man-cartoon-MRPM90.jpg",
+        "testimonial": "I appreciate the variety of survey templates available, making it easy to create diverse questionnaires."
+    },
+    {
+        "id": 5,
+        "avatar": "https://i.ibb.co/KyHGwvh/young-man-cartoon-vector-17299132.jpg",
+        "testimonial": "The real-time analytics and visualization features are fantastic, providing valuable insights at a glance."
+    }
+]
