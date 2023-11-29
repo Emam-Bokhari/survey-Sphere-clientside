@@ -34,45 +34,45 @@ const SurveysPage = () => {
     });
 
     return (
-        <div className="my-10">
+        <div className='lg:mb-96'  >
             {/* Navbar */}
             <Navbar />
 
             {/* Dropdown and Input for Category and Title Filtering */}
             <div className='my-5 flex gap-10'>
                 {/* category */}
-               <div>
-               <label className='text-lg font-bold' htmlFor="category">Select Category: </label>
-                <select
-               
-                    id="category"
-                    name="category"
-                    value={selectedCategory}
-                    onChange={(e) => handleCategoryChange(e.target.value)}
-                >
-                    <option  value="">All</option>
-                    <option value="Education">Education</option>
-                    <option value="Health Care">Health Care</option>
-                    <option value="Ecommerce">Ecommerce</option>
-                  <option value="Human Resources">Human Resources</option>
-                  <option value="Customers">Customers</option>
-                  <option value="Market Research">Market Research</option>
-                    {/* Add more categories as needed */}
-                </select>
-               </div>
+                <div>
+                    <label className='text-lg font-bold' htmlFor="category">Select Category: </label>
+                    <select
 
-{/* title */}
-               <div>
-               <label className='text-lg font-bold' htmlFor="title">Enter Title: </label>
-                <input
-                className='border-[1px] border-gray-300 outline-[#5ae4a7]'
-                    type="text"
-                    id="title"
-                    name="title"
-                    value={selectedTitle}
-                    onChange={(e) => handleTitleChange(e.target.value)}
-                />
-               </div>
+                        id="category"
+                        name="category"
+                        value={selectedCategory}
+                        onChange={(e) => handleCategoryChange(e.target.value)}
+                    >
+                        <option value="">All</option>
+                        <option value="Education">Education</option>
+                        <option value="Health Care">Health Care</option>
+                        <option value="Ecommerce">Ecommerce</option>
+                        <option value="Human Resources">Human Resources</option>
+                        <option value="Customers">Customers</option>
+                        <option value="Market Research">Market Research</option>
+                        {/* Add more categories as needed */}
+                    </select>
+                </div>
+
+                {/* title */}
+                <div>
+                    <label className='text-lg font-bold' htmlFor="title">Enter Title: </label>
+                    <input
+                        className='border-[1px] border-gray-300 outline-[#5ae4a7]'
+                        type="text"
+                        id="title"
+                        name="title"
+                        value={selectedTitle}
+                        onChange={(e) => handleTitleChange(e.target.value)}
+                    />
+                </div>
 
 
             </div>

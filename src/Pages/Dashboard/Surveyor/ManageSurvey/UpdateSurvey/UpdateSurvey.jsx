@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import { useContext } from 'react';
 import { AuthContext } from "../../../../../AuthProvider/AuthProvider";
 import SectionTitle from "../../../SectionTitle/SectionTitle";
@@ -12,6 +12,7 @@ const UpdateSurvey = () => {
     const { user } = useContext(AuthContext)
     const { surveyTitle, date, description, question1, question2, question3, question4, question5, _id } = survey || {}
     const axiosSecure = useAxiosSecure()
+    const navigate=useNavigate()
 
     const handleUpdateSurvey = async (event) => {
         event.preventDefault();
@@ -43,10 +44,12 @@ const UpdateSurvey = () => {
                     .then(res => {
                         if (res.data.modifiedCount > 0) {
                             Swal.fire({
+
                                 title: "Updated!",
                                 text: "Survey has been updated.",
                                 icon: "success"
                             });
+                            navigate("/dashboard/manageSurvey")
                         }
                     })
             }

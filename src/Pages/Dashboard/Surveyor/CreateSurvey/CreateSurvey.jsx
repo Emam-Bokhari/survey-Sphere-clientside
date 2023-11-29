@@ -1,15 +1,17 @@
 import { useContext } from "react";
 import { AuthContext } from './../../../../AuthProvider/AuthProvider';
 import useAxiosPublic from "../../../../hooks/useAxiosPublic";
-import { toast,ToastContainer } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 const CreateSurvey = () => {
-  const axiosPublic=useAxiosPublic()
-  const {user}=useContext(AuthContext)
-  
+  const axiosPublic = useAxiosPublic()
+  const { user } = useContext(AuthContext)
+  const navigate = useNavigate()
 
-  const handleCreateSurvey =async (event) => {
+
+  const handleCreateSurvey = async (event) => {
     event.preventDefault();
     const form = event.target;
 
@@ -26,9 +28,10 @@ const CreateSurvey = () => {
 
     // console.log(createSurvey);
 
-    const createSurveyRes=await axiosPublic.post("/api/v1/create-survey",createSurvey)
+    const createSurveyRes = await axiosPublic.post("/api/v1/create-survey", createSurvey)
     console.log(createSurveyRes.data);
-    if(createSurveyRes.data.insertedId){
+    if (createSurveyRes.data.insertedId) {
+      navigate("/dashboard/manageSurvey")
       toast.success('Survey successfully created!')
     }
 
@@ -96,14 +99,14 @@ const CreateSurvey = () => {
             </div>
 
             {/* question */}
-           <div className="space-y-2" >
-            
-           <div>
-              <p className="text-lg text-[#2a2a2a]" >Question 1:</p>
-              <input className="bg-white w-full p-2 rounded-sm outline-none"  type="text" name="question1" placeholder="Enter Your Question 1 ?"required />
-            </div>
+            <div className="space-y-2" >
 
-           </div>
+              <div>
+                <p className="text-lg text-[#2a2a2a]" >Question 1:</p>
+                <input className="bg-white w-full p-2 rounded-sm outline-none" type="text" name="question1" placeholder="Enter Your Question 1 ?" required />
+              </div>
+
+            </div>
 
             <div className="my-5">
               <input
