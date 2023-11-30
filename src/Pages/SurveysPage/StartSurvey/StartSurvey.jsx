@@ -1,4 +1,4 @@
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useNavigate } from "react-router-dom";
 import Navbar from "../../../sharedComponents/Navbar/Navbar";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
 import { useContext } from "react";
@@ -9,6 +9,7 @@ const StartSurvey = () => {
   const surveyDetails = useLoaderData()
   // console.log(surveyDetails);
   const axiosPublic=useAxiosPublic()
+  const navigate=useNavigate()
   // console.log(surveyDetails);
   const { question1,category,_id } = surveyDetails || {}
   const {user}=useContext(AuthContext)
@@ -38,11 +39,13 @@ const StartSurvey = () => {
       console.log(surveyVoteRes.data);
       console.log(surveyVoteRes.data.message);
       if(surveyVoteRes.data.insertedId){
+        navigate("/")
         toast.success("Your vote has been done!")
       }
       else{
         toast.error("You are already voted this survey!")
       }
+      form.reset()
       
     
 

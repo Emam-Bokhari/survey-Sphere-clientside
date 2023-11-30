@@ -4,9 +4,11 @@ import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { AuthContext } from "../../../AuthProvider/AuthProvider";
 import { toast, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import { useNavigate } from "react-router-dom";
 
 
 const CheckOutForm = () => {
+    const navigate=useNavigate()
     const { user } = useContext(AuthContext)
     const [error, setError] = useState()
     const [clientSecret, setClientSecret] = useState("");
@@ -93,6 +95,7 @@ const CheckOutForm = () => {
         if (res.data.result.insertedId) {
             toast.success('Transaction has been successfull and now you pro-user')
         }
+        navigate("/")
 
 
 
