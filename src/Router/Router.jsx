@@ -44,12 +44,12 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/surveyDetails/:id",
-                loader: ({ params }) => fetch(`http://localhost:3000/api/v1/${params.id}/survey-details`),
+                loader: ({ params }) => fetch(`https://survey-sphere-server-side.vercel.app/v1/${params.id}/survey-details`),
                 element: <SurveyDetails />,
             },
             {
                 path: "/startSurvey/:id",
-                loader: ({ params }) => fetch(`http://localhost:3000/api/v1/${params.id}/survey-details`),
+                loader: ({ params }) => fetch(`https://survey-sphere-server-side.vercel.app/api/v1/${params.id}/survey-details`),
                 element: <StartSurvey />
             },
             {
@@ -93,7 +93,7 @@ const Router = createBrowserRouter([
             },
             {
                 path: "/dashboard/updateSurvey/:id",
-                loader:({params})=>fetch(`http://localhost:3000/api/v1/${params.id}/secure-surveys`),
+                loader:({params})=>fetch(`https://survey-sphere-server-side.vercel.app/api/v1/${params.id}/secure-surveys`),
                 element: <SurveyorRoute><UpdateSurvey /></SurveyorRoute>
             },
             {
