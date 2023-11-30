@@ -45,7 +45,11 @@ const SurveyorSurveyResponses = () => {
         },
         {
             name: "Category",
-            selector: (row) => row.email
+            selector: (row) => row.category
+        },
+        {
+            name: "Vote",
+            selector: (row) => row.answer1
         },
        
 

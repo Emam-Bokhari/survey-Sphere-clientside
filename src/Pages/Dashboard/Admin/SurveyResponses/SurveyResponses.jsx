@@ -27,6 +27,7 @@ const SurveyResponses = () => {
     },
   });
   
+//   answer1
 
   console.log(totalVoted);
 
@@ -45,7 +46,11 @@ const SurveyResponses = () => {
         },
         {
             name: "Category",
-            selector: (row) => row.email
+            selector: (row) => row.category
+        },
+        {
+            name: "Vote",
+            selector: (row) => row.answer1
         },
        
 
