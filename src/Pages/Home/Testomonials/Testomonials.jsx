@@ -37,7 +37,7 @@ const Testimonials = () => {
                     />
                   </div>
                   <h6 className="text-lg text-center mt-3 font-semibold text-dark-01">
-                      Name: {item?.customer?.name}
+                      Name: {item?.name}
                     </h6>
                   <div className="text-center">
                     

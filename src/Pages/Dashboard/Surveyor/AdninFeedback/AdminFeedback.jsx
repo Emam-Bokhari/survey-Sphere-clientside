@@ -3,6 +3,8 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import DataTable from "react-data-table-component";
 import useAllSurvey from "../../../../hooks/useAllSurveys";
+import Search from "../../Sidebar/Search/Search";
+import SectionTitle from "../../SectionTitle/SectionTitle";
 
 const AdminFedBack = () => {
    const [allSurveys]=useAllSurvey()
@@ -54,6 +56,10 @@ const AdminFedBack = () => {
     ];
     return (
         <div>
+
+<Search/>
+<SectionTitle title="Admin Feedback" />
+
             <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
                 <div className="modal-box">
                     <h3 className="font-bold text-lg text-[#2a2a2a]">Report Details</h3>

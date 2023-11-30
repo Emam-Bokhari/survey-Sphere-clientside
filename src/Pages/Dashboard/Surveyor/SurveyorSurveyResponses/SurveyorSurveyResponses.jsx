@@ -1,8 +1,74 @@
+import useSurveyVoted from "../../../../hooks/useSurveyVoted";
+import DataTable from "react-data-table-component";
+import Search from "../../Sidebar/Search/Search";
+import SectionTitle from "../../SectionTitle/SectionTitle";
+import useAxiosPublic from "../../../../hooks/useAxiosPublic";
+import { useQuery } from "@tanstack/react-query";
+
 
 const SurveyorSurveyResponses = () => {
+    const axiosPublic=useAxiosPublic()
+    const [voted] = useSurveyVoted()
+  
+  const surveyIds = voted.map(item => item.surveyId);
+
+
+  const selectedSurveyId = surveyIds.length > 0 ? surveyIds[0] : null;
+
+  const { data: totalVoted = [] } = useQuery({
+    queryKey: ['totalVoted', selectedSurveyId],
+    queryFn: async () => {
+      if (!selectedSurveyId) {
+        return [];
+      }
+
+      const res = await axiosPublic.get(`/api/v1/show-total-voted?surveyId=${selectedSurveyId}`);
+      return res.data;
+    },
+  });
+  
+
+  console.log(totalVoted);
+
+    const columns = [
+        {
+            name: "No",
+            selector: (row, index) => index + 1
+        },
+        {
+            name: "Name",
+            selector: (row) => row.name
+        },
+        {
+            name: "Email",
+            selector: (row) => row.email
+        },
+        {
+            name: "Category",
+            selector: (row) => row.email
+        },
+       
+
+    ]
+
+
     return (
+
         <div>
-            <h2>Survey Responses</h2>
+            <Search />
+
+
+
+            <SectionTitle title="Survey Responses" />
+
+
+            <DataTable
+                columns={columns}
+                data={voted}
+                pagination
+                highlightOnHover
+                responsive
+            />
         </div>
     );
 };

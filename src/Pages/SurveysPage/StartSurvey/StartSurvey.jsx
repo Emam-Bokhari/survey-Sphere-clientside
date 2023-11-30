@@ -1,13 +1,17 @@
 import { useLoaderData } from "react-router-dom";
 import Navbar from "../../../sharedComponents/Navbar/Navbar";
 import useAxiosPublic from "../../../hooks/useAxiosPublic";
+import { useContext } from "react";
+import { AuthContext } from "../../../AuthProvider/AuthProvider";
+import { toast } from "react-toastify";
 
 const StartSurvey = () => {
   const surveyDetails = useLoaderData()
   // console.log(surveyDetails);
   const axiosPublic=useAxiosPublic()
   // console.log(surveyDetails);
-  const { question1,category } = surveyDetails || {}
+  const { question1,category,_id } = surveyDetails || {}
+  const {user}=useContext(AuthContext)
 
 
   const handleSubmit =async (event) => {
@@ -19,11 +23,28 @@ const StartSurvey = () => {
     const answer1 = form.answer1.value
 
     const surveyVote={
+      name:user?.displayName||"User",
+      email:user?.email,
+      time: new Date().toLocaleTimeString(),
       question1,
       answer1,
-      category
+      category,
+      surveyId:_id
     }
     console.log(surveyVote);
+
+   
+      const surveyVoteRes = await axiosPublic.post("/api/v1/create-surveyVote", surveyVote)
+      console.log(surveyVoteRes.data);
+      console.log(surveyVoteRes.data.message);
+      if(surveyVoteRes.data.insertedId){
+        toast.success("Your vote has been done!")
+      }
+      else{
+        toast.error("You are already voted this survey!")
+      }
+      
+    
 
 
   }

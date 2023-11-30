@@ -123,7 +123,7 @@ const CheckOutForm = () => {
 
                 <p className="text-red-500">
                     {error}</p>
-                <button className="bg-blue-600 text-white font-bold my-5 px-3 py-1 rounded text-lg" type="submit" disabled={!stripe || !clientSecret}>
+                <button className="bg-[#5ae4a7] text-[#2a2a2a] font-bold my-5 px-3 py-1 rounded text-lg" type="submit" disabled={!stripe || !clientSecret}>
                     Pay
                 </button>
 

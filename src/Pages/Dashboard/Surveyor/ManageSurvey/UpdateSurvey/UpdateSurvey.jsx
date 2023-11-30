@@ -131,10 +131,6 @@ const UpdateSurvey = () => {
 
                         </div>
 
-
-
-
-
                         <div className="my-5">
                             <input
                                 className="bg-[#19cb98] w-full rounded-sm p-2 text-white font-simibold text-xl cursor-pointer"
