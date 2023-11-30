@@ -2,7 +2,7 @@ import axios from "axios";
 import { getAuth,signOut } from "firebase/auth";
 
 const axiosSecure=axios.create({
-    baseURL:"http://localhost:3000",
+    baseURL:"https://survey-sphere-server-side.vercel.app",
     withCredentials:true
 })
 
