@@ -21,8 +21,7 @@ const SurveyDetails = () => {
     const { surveyTitle, description, _id,surveyorEmail
     } = details || {}
 
-    console.log(details);
-
+    // console.log(details);
 
 
 
@@ -34,6 +33,9 @@ const SurveyDetails = () => {
             return res.data
         }
     })
+    console.log(users);
+    
+
 
     const handleLike = async (_id) => {
         
@@ -167,15 +169,18 @@ const SurveyDetails = () => {
                     <textarea className=" w-full md:h-40 border-2 border-gray-300 p-4 text-[2a2a2a] text-lg " name="comment" placeholder="Share your thoughts..."></textarea>
 
                 </div>
+                
 
                 {/* comment button */}
-                {users?.filter(user => user?.role === 'prouser' ? <div className="my-5">
-                    <input
-                        className="bg-[#79C23F] w-full rounded-sm p-2 text-white font-simibold text-xl cursor-pointer"
+                 <div className="my-5">
+                   <div className="text-end" >
+                   <input
+                        className="bg-[#79C23F]  rounded-sm p-2 text-white font-simibold text-xl cursor-pointer"
                         type="submit"
                         value="Comment"
                     />
-                </div> : "")}
+                   </div>
+                </div> 
 
             </form>
 
