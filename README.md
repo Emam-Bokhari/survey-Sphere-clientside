@@ -42,3 +42,22 @@
 10. **Survey Filters:**
     - Filter surveys based on categories.
     - Enhance user experience with categorized surveys.
+
+## Technologies
+
+### 1. Client Side:
+
+- React
+- Tailwind Css
+- Firebase (Authentication)
+- JWT
+- React Hot Toast
+- Toastify
+- Daisy UI
+- React Data Table Component (Table)
+- Stripe (Payment Integration)
+
+### 2. Backend:
+
+- Express js
+- MongoDB (Database)
